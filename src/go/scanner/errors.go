@@ -6,7 +6,7 @@ package scanner
 
 import (
 	"fmt"
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 	"io"
 	"sort"
 )

@@ -9,8 +9,8 @@ package parser
 import (
 	"bytes"
 	"errors"
-	"go/ast"
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/ast"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 	"io"
 	"io/ioutil"
 	"os"

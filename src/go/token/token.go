@@ -22,12 +22,13 @@ const (
 	literal_beg
 	// Identifiers and basic type literals
 	// (these tokens stand for classes of literals)
-	IDENT  // main
-	INT    // 12345
-	FLOAT  // 123.45
-	IMAG   // 123.45i
-	CHAR   // 'a'
-	STRING // "abc"
+	IDENT                // main
+	INT                  // 12345
+	FLOAT                // 123.45
+	IMAG                 // 123.45i
+	CHAR                 // 'a'
+	STRING               // "abc"
+	STRING_INTERPOLATION // $"1+2 = {1+2}"
 	literal_end
 
 	operator_beg
@@ -129,12 +130,13 @@ var tokens = [...]string{
 	EOF:     "EOF",
 	COMMENT: "COMMENT",
 
-	IDENT:  "IDENT",
-	INT:    "INT",
-	FLOAT:  "FLOAT",
-	IMAG:   "IMAG",
-	CHAR:   "CHAR",
-	STRING: "STRING",
+	IDENT:                "IDENT",
+	INT:                  "INT",
+	FLOAT:                "FLOAT",
+	IMAG:                 "IMAG",
+	CHAR:                 "CHAR",
+	STRING:               "STRING",
+	STRING_INTERPOLATION: "STR_INTERPOL",
 
 	ADD: "+",
 	SUB: "-",

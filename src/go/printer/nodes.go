@@ -10,8 +10,8 @@ package printer
 
 import (
 	"bytes"
-	"go/ast"
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/ast"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 	"math"
 	"strconv"
 	"strings"

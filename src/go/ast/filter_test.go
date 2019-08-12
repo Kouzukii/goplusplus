@@ -8,10 +8,10 @@ package ast_test
 
 import (
 	"bytes"
-	"go/ast"
-	"go/format"
-	"go/parser"
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/ast"
+	"github.com/Kouzukii/goplusplus/src/go/format"
+	"github.com/Kouzukii/goplusplus/src/go/parser"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 	"testing"
 )
 

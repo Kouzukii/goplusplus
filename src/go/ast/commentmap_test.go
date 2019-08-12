@@ -9,7 +9,7 @@ package ast_test
 import (
 	"bytes"
 	"fmt"
-	. "go/ast"
+	. "github.com/Kouzukii/goplusplus/src/go/ast"
 	"go/parser"
 	"go/token"
 	"sort"

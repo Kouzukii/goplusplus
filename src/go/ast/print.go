@@ -8,7 +8,7 @@ package ast
 
 import (
 	"fmt"
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 	"io"
 	"os"
 	"reflect"

@@ -9,8 +9,8 @@ package printer
 
 import (
 	"bytes"
-	"go/ast"
-	"go/parser"
+	"github.com/Kouzukii/goplusplus/src/go/ast"
+	"github.com/Kouzukii/goplusplus/src/go/parser"
 	"io"
 	"io/ioutil"
 	"log"

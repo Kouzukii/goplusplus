@@ -5,7 +5,7 @@
 package ast
 
 import (
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 	"sort"
 	"strconv"
 )

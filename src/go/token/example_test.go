@@ -6,9 +6,9 @@ package token_test
 
 import (
 	"fmt"
-	"go/ast"
-	"go/parser"
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/ast"
+	"github.com/Kouzukii/goplusplus/src/go/parser"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 )
 
 func Example_retrievePositionInfo() {

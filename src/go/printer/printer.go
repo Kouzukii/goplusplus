@@ -7,8 +7,8 @@ package printer
 
 import (
 	"fmt"
-	"go/ast"
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/ast"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 	"io"
 	"os"
 	"strings"

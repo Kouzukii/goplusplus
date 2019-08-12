@@ -5,7 +5,7 @@
 package scanner
 
 import (
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 	"io/ioutil"
 	"os"
 	"path/filepath"

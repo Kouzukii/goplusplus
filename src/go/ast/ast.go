@@ -8,7 +8,7 @@
 package ast
 
 import (
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 	"strings"
 	"unicode"
 	"unicode/utf8"
@@ -258,6 +258,15 @@ type (
 		Value    string      // literal string; e.g. 42, 0x7f, 3.14, 1e-9, 2.4i, 'a', '\x7f', "foo" or `\m\n\o`
 	}
 
+	InterpLit struct {
+		Dollar   token.Pos
+		Segments []struct {
+			Fmt string // segment string content, if expr != nil this is the fmt ("s", ".5d", etc. - "v" by default)
+			X   Expr   // segment expression content
+		}
+		Rquote token.Pos
+	}
+
 	// A FuncLit node represents a function literal.
 	FuncLit struct {
 		Type *FuncType  // function type
@@ -422,11 +431,12 @@ type (
 
 // Pos and End implementations for expression/type nodes.
 
-func (x *BadExpr) Pos() token.Pos  { return x.From }
-func (x *Ident) Pos() token.Pos    { return x.NamePos }
-func (x *Ellipsis) Pos() token.Pos { return x.Ellipsis }
-func (x *BasicLit) Pos() token.Pos { return x.ValuePos }
-func (x *FuncLit) Pos() token.Pos  { return x.Type.Pos() }
+func (x *BadExpr) Pos() token.Pos   { return x.From }
+func (x *Ident) Pos() token.Pos     { return x.NamePos }
+func (x *Ellipsis) Pos() token.Pos  { return x.Ellipsis }
+func (x *BasicLit) Pos() token.Pos  { return x.ValuePos }
+func (x *InterpLit) Pos() token.Pos { return x.Dollar }
+func (x *FuncLit) Pos() token.Pos   { return x.Type.Pos() }
 func (x *CompositeLit) Pos() token.Pos {
 	if x.Type != nil {
 		return x.Type.Pos()
@@ -464,6 +474,7 @@ func (x *Ellipsis) End() token.Pos {
 	return x.Ellipsis + 3 // len("...")
 }
 func (x *BasicLit) End() token.Pos       { return token.Pos(int(x.ValuePos) + len(x.Value)) }
+func (x *InterpLit) End() token.Pos      { return x.Rquote }
 func (x *FuncLit) End() token.Pos        { return x.Body.End() }
 func (x *CompositeLit) End() token.Pos   { return x.Rbrace + 1 }
 func (x *ParenExpr) End() token.Pos      { return x.Rparen + 1 }
@@ -495,6 +506,7 @@ func (*BadExpr) exprNode()        {}
 func (*Ident) exprNode()          {}
 func (*Ellipsis) exprNode()       {}
 func (*BasicLit) exprNode()       {}
+func (*InterpLit) exprNode()      {}
 func (*FuncLit) exprNode()        {}
 func (*CompositeLit) exprNode()   {}
 func (*ParenExpr) exprNode()      {}

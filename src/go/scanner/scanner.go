@@ -11,7 +11,7 @@ package scanner
 import (
 	"bytes"
 	"fmt"
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 	"path/filepath"
 	"strconv"
 	"unicode"
@@ -561,6 +561,36 @@ func (s *Scanner) scanString() string {
 	return string(s.src[offs:s.offset])
 }
 
+func (s *Scanner) scanStringInterpolation() string {
+	offs := s.offset - 1
+	s.next()
+	for {
+		ch := s.ch
+		s.next()
+		if ch == '\n' || ch < 0 {
+			s.error(offs, "string interpolation not terminated")
+			break
+		}
+		if ch == '"' {
+			break
+		}
+		if ch == '\\' {
+			s.scanEscape('"')
+		}
+		if ch == '{' {
+			for {
+				s.next()
+				if s.ch == '}' {
+					break
+				}
+				s.Scan()
+			}
+		}
+	}
+
+	return string(s.src[offs:s.offset])
+}
+
 func stripCR(b []byte, comment bool) []byte {
 	c := make([]byte, len(b))
 	i := 0
@@ -832,6 +862,14 @@ scanAgain:
 			}
 		case '|':
 			tok = s.switch3(token.OR, token.OR_ASSIGN, '|', token.LOR)
+		case '$':
+			if s.ch == '"' {
+				insertSemi = true
+				tok = token.STRING_INTERPOLATION
+				lit = s.scanStringInterpolation()
+				break
+			}
+			fallthrough
 		default:
 			// next reports unexpected BOMs - don't repeat
 			if ch != bom {

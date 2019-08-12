@@ -8,8 +8,8 @@ package ast
 
 import (
 	"fmt"
-	"go/scanner"
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/scanner"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 	"strconv"
 )
 

@@ -18,9 +18,9 @@ package parser
 
 import (
 	"fmt"
-	"go/ast"
-	"go/scanner"
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/ast"
+	"github.com/Kouzukii/goplusplus/src/go/scanner"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 	"strconv"
 	"strings"
 	"unicode"
@@ -1144,6 +1144,11 @@ func (p *parser) parseOperand(lhs bool) ast.Expr {
 		p.next()
 		return x
 
+	case token.STRING_INTERPOLATION:
+		x := p.parseInterpolation(p.lit)
+		p.next()
+		return x
+
 	case token.LPAREN:
 		lparen := p.pos
 		p.next()
@@ -2212,7 +2217,7 @@ func (p *parser) parseStmt() (s ast.Stmt) {
 		s = &ast.DeclStmt{Decl: p.parseDecl(stmtStart)}
 	case
 		// tokens that may start an expression
-		token.IDENT, token.INT, token.FLOAT, token.IMAG, token.CHAR, token.STRING, token.FUNC, token.LPAREN, // operands
+		token.IDENT, token.INT, token.FLOAT, token.IMAG, token.CHAR, token.STRING, token.STRING_INTERPOLATION, token.FUNC, token.LPAREN, // operands
 		token.LBRACK, token.STRUCT, token.MAP, token.CHAN, token.INTERFACE, // composite types
 		token.ADD, token.SUB, token.MUL, token.AND, token.XOR, token.ARROW, token.NOT: // unary operators
 		s, _ = p.parseSimpleStmt(labelOk)

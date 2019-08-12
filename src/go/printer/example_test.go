@@ -7,10 +7,10 @@ package printer_test
 import (
 	"bytes"
 	"fmt"
-	"go/ast"
-	"go/parser"
-	"go/printer"
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/ast"
+	"github.com/Kouzukii/goplusplus/src/go/parser"
+	"github.com/Kouzukii/goplusplus/src/go/printer"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 	"strings"
 	"testing"
 )

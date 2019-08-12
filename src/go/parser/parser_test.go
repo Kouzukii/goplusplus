@@ -7,8 +7,8 @@ package parser
 import (
 	"bytes"
 	"fmt"
-	"go/ast"
-	"go/token"
+	"github.com/Kouzukii/goplusplus/src/go/ast"
+	"github.com/Kouzukii/goplusplus/src/go/token"
 	"os"
 	"strings"
 	"testing"
